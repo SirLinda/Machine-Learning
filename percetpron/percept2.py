@@ -22,22 +22,24 @@ eta = 0.05
 data = pd.read_csv('Percept1.csv', delimiter='\t')
 print(data)
 
+count = 0
 
+while count < 100:
 # epoch
-for row in data:
+    for row in data:
 
-    row = row.split(';')
-    data_point = [float(row[0]), float(row[1]), float(row[2])]
+        row = row.split(';')
+        data_point = [float(row[0]), float(row[1]), float(row[2])]
 
-    x = (data_point[0], data_point[1])
+        x = (data_point[0], data_point[1])
 
-    t = float(data_point[2])
+        t = float(data_point[2])
 
-    y = perceptron(x, weights, threshold)
-    print(y)
+        y = perceptron(x, weights, threshold)
+        print(y)
 
-    for i in range(len(weights)):
-        weights[i] += eta * (t - y) * data_point[i]
-    threshold -= eta * (t - y)
-    print(weights)
+        for i in range(len(weights)):
+            weights[i] += eta * (t - y) * data_point[i]
+        threshold -= eta * (t - y)
+        print(weights)
 
